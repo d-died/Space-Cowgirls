@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPACE COWGIRLS</title>
+</head>
+<body>
+
+<div class="title">
+    <div id="text">SPACE COWGIRLS</div>
+        <button class="button" id="start">Let's Begin!</button>
+    </div>
+</div>
+
+<!--DIV element for title screen
+This will include:
+"SPACE COWGIRLS" title
+creator's name & year
+Button to start
+(JS.TITLE)-->
+
+<!-- DIV element for background/setting text
+This will include:
+-1 or 2 screens of text to scroll through
+-A final text screen reading: "Let's get you into the cockpit"
+-A button to moves to next div element (JS.BACKGROUND) -->
+
+<!-- DIV element for ship selection screen
+This will include:
+1. images of each ship choice
+2. text elements for their attack/speed stats
+3. button to select a ship (a check box?)
+4. button to confirm choice and continue -->
+
+
+<!-- DIV element with ship stats (will be screen "frame/margin") for many other/perhaps all other screens
+1. HEALTH
+2. (VERY SICKLY TO START) LOOT STORAGE-->
+
+<!-- DIV element for displaying user ship selection 
+This will include: 
+1. bigger, centered image of ship
+2. Some text ... "Excellent selection, comrade!"
+3. button to continue-->
+
+<!-- ~~~~~~~~~~~~~~~~~~ 4-ITERATION LOOP WITHIN THE SQUIGGLES -->
+<!-- DIV element for enemy ship
+This will include:
+1. ATTACK stat
+2. SPEED stat
+3. LOOT stat
+    -All randomly generated in JS.ENEMY SHIP
+-->
+
+<!-- DIV element for lookout alert announcement
+This will include:
+1. A picture of the enemy ship
+2. Text:
+    -Generic: "The lookout just found a ship incoming on the radar"
+    -Variant: "According to my estimates, that ship __________" (see JS.LOOKOUT ALERT)
+3. button to continue-->
+
+
+<!-- DIV element for attack/run button screen
+This will include:
+1. Text asking "What should we do, captain?!"
+2. Two Buttons: 
+    -"Attack"
+    -"GTFO of there"
+3. Contingent responses in JS.
+*4. Button to continue ... IF option 2 from JS.ATTACK/RUN -->
+<!-- ~~~~~~~~~~~~~~~~~ -->
+
+<!--DIV element to group all end result options>
+DIV element for GAME OVER
+This will include:
+1. Text indicating loss
+2. Button to start over
+
+DIV element for YOU SURVIVED
+This will include:
+1. Text
+2. Button to start over
+
+DIV element for YOU THRIVED, SPACE COWGIRL
+This will include:
+1. Text 
+2. Button to start over
+-->
+
+<div class="ship-pics">
+    <img class="ship-choice" id="ship-1">
+    <img class="ship-choice" id="ship-2">
+    <img class="ship-choice" id="ship-3">
+    <img class="enemy-ship" id="enemy-1">
+    <img class="enemy-ship" id="enemy-2">
+    <img class="enemy-ship" id="enemy-3">
+    <img class="enemy-ship" id="enemy-4">
+</div>
+
+
+
+</body>
+</html>
