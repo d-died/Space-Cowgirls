@@ -2,11 +2,29 @@
 //An event listener to change the shade of buttons (ie. all black to white) when you hover over them
 //????? A general "story" button that always fades current element and activates to display the next?
 
-const titleSlide = document.querySelector(".slide1");
-const settingSlide = document.querySelector(".slide2");
-document.querySelector("#start").addEventListener("click", () => {
-    titleSlide.classList.add("hide");
-    settingSlide.classList.remove("hide");
+const one = document.querySelector(".slide1");
+const two = document.querySelector(".slide2");
+document.querySelector("#next1").addEventListener("click", () => {
+    one.classList.add("hide")
+    two.classList.remove("hide")
+})
+
+const three = document.querySelector(".slide3")
+document.querySelector("#next2").addEventListener("click", () => {
+    two.classList.add("hide")
+    three.classList.remove("hide")
+})
+
+const four = document.querySelector(".slide4")
+document.querySelector("#next3").addEventListener("click", () => {
+    three.classList.add("hide")
+    four.classList.remove("hide")
+})
+
+const five = document.querySelector(".slide5")
+document.querySelector("#next4").addEventListener("click", () => {
+    four.classList.add("hide")
+    five.classList.remove("hide")
 })
 
 // currentSlideOff = document.querySelector(".slide1").style.display = "none";
@@ -92,6 +110,7 @@ document.querySelector("#start").addEventListener("click", () => {
 
 
 //IF YOU GOT EXTRA TIME IDEAS (marked with ***):
+//Ship selection: there are 3 different choices
 //3 choices: attack, run, or ally
 //ATTACK reactions: if user > enemy && enemy attack is within 5 pts, the user still takes some damage. 
 //Loot values: dependent on attack stat of ship || dependent on the ratio of comparison values

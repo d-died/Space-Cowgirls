@@ -5,23 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPACE COWGIRLS</title>
-    <link rel="stylesheet" href="sheet.css">
+    <link rel= "stylesheet" href= "sheet.css">
 </head>
 <body>
-
-<!-- <header>Yeehaw, Space Cowgirls!</header> -->
-<div class = "slide1">
-    <header>Yeehaw, Space Cowgirls!</header>
-    <button class="button" id="start">Let's Begin!</button>
-</div>
-
-<div class = "slide2 hide">
-    <p>In the year 4430...</p>
-</div>
-
-
-
-
 
 <!--DIV element for title screen
 This will include:
@@ -30,24 +16,45 @@ creator's name & year
 Button to start
 (JS.TITLE)--> 
 
+<div class = "slide1">
+    <header>Yeehaw, Space Cowgirls!</header>
+    <button class="button" id="next1">Yeehaw!</button>
+</div>
+
 <!-- DIV element for background/setting text
 This will include:
 -1 or 2 screens of text to scroll through
 -A final text screen reading: "Let's get you into the cockpit"
 -A button to moves to next div element (JS.BACKGROUND) -->
 
-<!-- DIV element for ship selection screen
+<div class = "slide2 hide">
+    <p>In the year 4430...</p>
+    <button class="button" id="next2">>></button>
+</div>
+
+<!-- DIV element for ship selection screen***
 This will include:
 1. images of each ship choice
 2. text elements for their attack/speed stats
 3. button to select a ship (a check box?)
 4. button to confirm choice and continue -->
 
+<div class = "slide3 hide">
+    <p> She's a piece of shit, but her guns will do the trick!</p>
+    <button class="button" id="next3">>></button>
+</div>
+
 
 <!-- DIV element with ship stats (will be screen "frame/margin") for many other/perhaps all other screens
 1. HEALTH
 2. (VERY SICKLY TO START) LOOT STORAGE-->
 
+<div class="slide4 hide">
+    <p>You'll start with what she's got, and hopefully you'll collect some along the way. You'll need it sister! </p>
+    <button class="button" id="next4">>></button>
+</div>
+
+<!--If you get around to this-->
 <!-- DIV element for displaying user ship selection 
 This will include: 
 1. bigger, centered image of ship
@@ -63,6 +70,10 @@ This will include:
     -All randomly generated in JS.ENEMY SHIP
 -->
 
+<div class="enemy-ship hide">
+    <!--maybe an image-->
+</div>
+
 <!-- DIV element for lookout alert announcement
 This will include:
 1. A picture of the enemy ship
@@ -71,6 +82,11 @@ This will include:
     -Variant: "According to my estimates, that ship __________" (see JS.LOOKOUT ALERT)
 3. button to continue-->
 
+<div class="slide5 hide">
+    <p>GadZOINKS Binky! A huge ship just popped up on my radar. What should we do?!</p>
+    <button class="button action" id="slide5 attack"></button>
+    <button class="button action" id="slide 5 run"></button>
+</div>
 
 <!-- DIV element for attack/run button screen
 This will include:
