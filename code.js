@@ -2,7 +2,15 @@
 //An event listener to change the shade of buttons (ie. all black to white) when you hover over them
 //????? A general "story" button that always fades current element and activates to display the next?
 
+const titleSlide = document.querySelector(".slide1");
+const settingSlide = document.querySelector(".slide2");
+document.querySelector("#start").addEventListener("click", () => {
+    titleSlide.classList.add("hide");
+    settingSlide.classList.remove("hide");
+})
 
+// currentSlideOff = document.querySelector(".slide1").style.display = "none";
+// newSlideOn = document.querySelector(".slide2").style.display = "flex";
 
 //TITLE:
 //An event listener for "START" button to:
