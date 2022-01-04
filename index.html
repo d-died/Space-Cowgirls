@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPACE COWGIRLS</title>
     <link rel= "stylesheet" href= "sheet.css">
+    <img src="https://dribbble.com/shots/4730878-Learn-Anime-Illustration-Space-Girl">
 </head>
 <body>
 
@@ -16,9 +17,9 @@ creator's name & year
 Button to start
 (JS.TITLE)--> 
 
-<div class = "slide1">
-    <header>Yeehaw, Space Cowgirls!</header>
-    <button class="button" id="next1">Yeehaw!</button>
+<div class ="title">
+    <h1>Yeehaw, Space Cowgirls!</h1>
+    <button class="button" id="titleNext">Giddyup!</button>
 </div>
 
 <!-- DIV element for background/setting text
@@ -27,9 +28,18 @@ This will include:
 -A final text screen reading: "Let's get you into the cockpit"
 -A button to moves to next div element (JS.BACKGROUND) -->
 
-<div class = "slide2 hide">
-    <p>In the year 4430...</p>
-    <button class="button" id="next2">>></button>
+<div class="story1 hide">
+    <p>In the year 4430, a squad of fearless cowgirls zoomed throughout the galaxies.<br>
+    <p>Their mission was nothing but hedonist: get rich or have fun trying.<br>
+    <p>But one day, the cowgirls bit off a little more than they could chew ...<br>
+    <button class="button" id="storyNext">>></button>
+</div>
+
+<div class="story2 hide">
+    <p>In an epic, 18-hour long fight with the indominable Gilgabron Girls,<br>
+    <p>our fearless cowgirls nearly lost their whole ship<br>
+    <p>and their lives, too.<br>
+    <button class="button" id="storyNext2">>></button>
 </div>
 
 <!-- DIV element for ship selection screen***
@@ -40,7 +50,12 @@ This will include:
 4. button to confirm choice and continue -->
 
 <div class = "slide3 hide">
-    <p> She's a piece of shit, but her guns will do the trick!</p>
+    <p>So we meet our girls at the Cletus' Repair Shop.<br>
+    "Ladies, I need to spend a whole month on this damn thing.<br>
+    And I can tell you right now, it's not going to be cheap.<br>
+    I estimate 475k, at least. But you don't have that money, do ya?<br>
+    How's this? Cuz Mama Cletus loves you, I'll let you have my best loaner.<br>
+    She's a piece of shit, but she'll do the trick!"</p>
     <button class="button" id="next3">>></button>
 </div>
 
@@ -50,7 +65,8 @@ This will include:
 2. (VERY SICKLY TO START) LOOT STORAGE-->
 
 <div class="slide4 hide">
-    <p>You'll start with what she's got, and hopefully you'll collect some along the way. You'll need it sister! </p>
+    <p>Now go out and steal some money from some of those ugly bastards!<br>
+     You'll need it if you ever want this ship back, sisters! </p>
     <button class="button" id="next4">>></button>
 </div>
 
@@ -69,7 +85,10 @@ This will include:
 3. LOOT stat
     -All randomly generated in JS.ENEMY SHIP
 -->
-
+<div class="myShip">
+    <h3 class="health hide">Health</h3>
+    <h3 class="loot hide">Loot</h3>
+</div>
 <div class="enemy-ship hide">
     <!--maybe an image-->
 </div>
@@ -83,10 +102,12 @@ This will include:
 3. button to continue-->
 
 <div class="slide5 hide">
-    <p>GadZOINKS Binky! A huge ship just popped up on my radar. What should we do?!</p>
-    <button class="button action" id="slide5 attack"></button>
-    <button class="button action" id="slide 5 run"></button>
+    <p><span></span></br>What do you think we should do?!</p>
+    <button class="button" id="next5-attack">Attack</button>
+    <button class="button" id="next5-run">Run</button>
 </div>
+
+
 
 <!-- DIV element for attack/run button screen
 This will include:
@@ -98,22 +119,57 @@ This will include:
 *4. Button to continue ... IF option 2 from JS.ATTACK/RUN -->
 <!-- ~~~~~~~~~~~~~~~~~ -->
 
+<div class="attackWin hide">
+    <p>We did it!!! I can't believe it!!!</br>
+    We even stole all their money, too! That much closer to getting our ship back!</p>
+    <button class="button" id="next6"></button>
+</div>
+<div class="attackLose hide">
+    <p>OUCH! We took some serious damage. </p>
+    <button clas="button" id="next6"
+</div>
+
+<div class="runWin hide">
+    <p>PHEW! We made it out unscathed. </br>
+    We missed out on a lot of loot though. Blerg.</p>
+    <button class="button" id="next6"></button>
+</div>
+
+<div class="runLose hide">
+    <p>How the heck did they catch up to us?! <br>
+    At least we didn't try and fight.<br>
+    We only took a fraction of the damage they could've dealt!</p>
+</div>
+
 <!--DIV element to group all end result options>
 DIV element for GAME OVER
 This will include:
 1. Text indicating loss
-2. Button to start over
+2. Button to start over-->
 
-DIV element for YOU SURVIVED
+<div class="ending hide" id="game-over">
+    <h1>We're done for! We're trapped floating in space AND in debt now!</h1>
+    <button class="button" id="start-over">Try Again?</button>
+</div> 
+
+<!-- DIV element for YOU SURVIVED
 This will include:
 1. Text
-2. Button to start over
+2. Button to start over -->
 
-DIV element for YOU THRIVED, SPACE COWGIRL
+<div class="ending hide" id="survived">
+    <h1>We made it home safely, but can't get the ship back.</h1>
+    <button class="button" id="start-over">Try again?</button>
+</div>
+
+<!-- DIV element for YOU THRIVED, SPACE COWGIRL
 This will include:
 1. Text 
-2. Button to start over
--->
+2. Button to start over -->
+<div class="ending hide" id="thrived">
+    <h1>Debt-free! Stress-free! Let's PARTY GIRLS!! YEEHAW!</h1>
+</div>
+
 
 <div class="ship-pics">
     <img class="ship-choice" id="ship-1">

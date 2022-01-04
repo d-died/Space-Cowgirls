@@ -1,9 +1,8 @@
-header {
+.title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 80px;
     font-variant: small-caps;
     color: white;
-    text-align: center;
 }
 .hide {
     display: none;
@@ -15,11 +14,27 @@ body {
     padding: 0;
     margin: 0;
     background-color: black;
+    position: absolute;
     display: flex;
     justify-content: center; 
     text-align: center;
 }
 
+.button {
+    background-color: #ffffff;
+    border: 7px solid #ff00ff; 
+    border-radius: 7px;
+    padding: 15px 15px;
+    color: #000000;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.button:hover {
+    background-color: #ffccff;
+}
 
 #start {
     position: absolute;

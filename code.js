@@ -2,16 +2,23 @@
 //An event listener to change the shade of buttons (ie. all black to white) when you hover over them
 //????? A general "story" button that always fades current element and activates to display the next?
 
-const one = document.querySelector(".slide1");
-const two = document.querySelector(".slide2");
-document.querySelector("#next1").addEventListener("click", () => {
-    one.classList.add("hide")
-    two.classList.remove("hide")
+const title = document.querySelector(".title")
+const story1 = document.querySelector(".story1")
+document.querySelector("#titleNext").addEventListener("click", () => {
+    title.classList.add("hide")
+    story1.classList.remove("hide")
 })
 
+const story2 = document.querySelector(".story2")
+document.querySelector("#storyNext").addEventListener("click", () => {
+    story1.classList.add("hide")
+    story2.classList.remove("hide")
+})
+
+
 const three = document.querySelector(".slide3")
-document.querySelector("#next2").addEventListener("click", () => {
-    two.classList.add("hide")
+document.querySelector("#storyNext2").addEventListener("click", () => {
+    story2.classList.add("hide")
     three.classList.remove("hide")
 })
 
@@ -21,14 +28,54 @@ document.querySelector("#next3").addEventListener("click", () => {
     four.classList.remove("hide")
 })
 
+const enemyShip = {attack: Math.floor(Math.random() * (95 - 45) + 45),
+                    speed: Math.floor(Math.random() * (80 - 20) + 20)}
+const myShip = {attack: 70, speed: 52, health: 100, loot: 50000}
+const myShipDiv = document.querySelector(".myShip")
+
 const five = document.querySelector(".slide5")
 document.querySelector("#next4").addEventListener("click", () => {
     four.classList.add("hide")
     five.classList.remove("hide")
+    myShipDiv.classList.remove("hide")
 })
 
-// currentSlideOff = document.querySelector(".slide1").style.display = "none";
-// newSlideOn = document.querySelector(".slide2").style.display = "flex";
+const attackWin = document.querySelector(".attackWin")
+const attackLose = document.querySelector(".attackLose")
+document.querySelector("#next5-attack").addEventListener("click", () => {
+    if (myShip.attack > enemyShip.attack) {
+        five.classList.add("hide") 
+        attackWin.classList.remove("hide")
+    } else { 
+        five.classList.add("hide")
+        attackLose.classList.remove("hide")
+    }
+    
+})
+const runWin = document.querySelector(".runWin")
+const runLose = document.querySelector(".runLose")
+document.querySelector("#next5-run").addEventListener("click", () => {
+    if (myShip.speed > enemyShip.speed) {
+        five.classList.add("hide")
+        runWin.classList.remove("hide")
+    } else {
+        five.classList.add("hide")
+        runLose.classList.remove("hide")
+    }
+    
+})
+
+
+
+const gameOver = document.querySelector("#game-over")
+document.querySelector("#start-over").addEventListener("click", () => {
+    gameOver.classList.add("hide")
+    story1.classList.remove("hide")
+})
+
+
+// currentSlideOff = document.querySelector(".title").style.display = "none";
+// newSlideOn = document.querySelector(".story1").style.display = "flex";
 
 //TITLE:
 //An event listener for "START" button to:
