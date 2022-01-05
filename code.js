@@ -28,8 +28,7 @@ document.querySelector("#storyNext2").addEventListener("click", () => {
 //BATTLE
 const enemyShip = {
     attack: Math.floor(Math.random() * (95 - 45) + 45),
-    // speed: Math.floor(Math.random() * (80 - 20) + 20),
-    speed: 75,
+    speed: Math.floor(Math.random() * (80 - 20) + 20),
     loot: Math.floor(Math.random() * (175000 - 50000) + 50000)}
 const myShip = {attack: 70, speed: 52, health: 100, loot: 50000}
 
@@ -43,88 +42,104 @@ document.querySelector("#storyNext3").addEventListener("click", () => {
 
 let myShipHealth = document.querySelector("#health")
 let myShipLoot = document.querySelector("#loot")
-const battleChoice = document.querySelector(".battleChoice")
-document.querySelector("#storyNext4").addEventListener("click", () => {
-    if (myShip.attack > enemyShip.attack) {
-        lookout.innerHTML = "We've got an enemy ahead. It'd be a hard fight, but we might stand a chance."
-    } else if (myShip.attack < enemyShip.attack) {
-        lookout.innerHTML = "Yikes boss. Massive ship just popped up on the radar. <br> They are armed to the teeth."
-         
-    }
-    console.log(enemyShip.attack)
-    console.log(enemyShip.speed)
-    console.log(enemyShip.loot)
-    story4.classList.add("hide")
-    myShipHealth.classList.remove("hide")
-    myShipHealth.innerHTML = "Health: " + myShip.health
-    myShipLoot.classList.remove("hide")
-    myShipLoot.innerHTML = "Health: " + myShip.loot
-    battleChoice.classList.remove("hide")
+let battleChoice = document.querySelector(".battleChoice")
+let attackWin = document.querySelector(".attackWin")
+let attackLose = document.querySelector(".attackLose")
+let result = document.querySelectorAll("result")
+do {
+   
+
+    document.querySelector("#storyNext4").addEventListener("click", () => {
+        if (myShip.attack > enemyShip.attack) {
+            lookout.innerHTML = "We've got an enemy ahead. It'd be a hard fight, but we might stand a chance."
+        } else if (myShip.attack < enemyShip.attack) {
+            lookout.innerHTML = "Yikes boss. Massive ship just popped up on the radar. <br> They are armed to the teeth."
+            
+        }
+        console.log(enemyShip.attack)
+        console.log(enemyShip.speed)
+        console.log(enemyShip.loot)
+        story4.classList.add("hide")
+        myShipHealth.classList.remove("hide")
+        myShipHealth.innerHTML = "Health: " + myShip.health
+        myShipLoot.classList.remove("hide")
+        myShipLoot.innerHTML = "Health: " + myShip.loot
+        battleChoice.classList.remove("hide")
 
     
-})
+    })
 
 
 //BATTLE CHOICE
-const attackWin = document.querySelector(".attackWin")
-const attackLose = document.querySelector(".attackLose")
+  
+    document.querySelector("#next5-attack").addEventListener("click", () => {
+        if (myShip.attack > enemyShip.attack) {
+            let moreLoot = myShip.loot += enemyShip.loot
+            myShipLoot.innerHTML = "Loot: " + moreLoot
+            myShip.health += (Math.floor(enemyShip.attack / 10))
+            myShipHealth.innerHTML = "Health: " + myShip.health
+            battleChoice.classList.add("hide") 
+            attackWin.classList.remove("hide")
+        } else { 
+            let lessLoot = myShip.loot -= (enemyShip.loot / 10)
+            myShipLoot.innerHTML = "Loot: " + lessLoot
+            Math.floor(myShip.health -= (enemyShip.attack / 2))
+            myShipHealth.innerHTML = "Health: " + myShip.health
+            battleChoice.classList.add("hide")
+            attackLose.classList.remove("hide")
+        }
+        // console.log(myShip.loot)
+        // console.log(myShip.health)
+    })
 
-document.querySelector("#next5-attack").addEventListener("click", () => {
+    const runWin = document.querySelector(".runWin")
+    const runLose = document.querySelector(".runLose")
+    document.querySelector("#next5-run").addEventListener("click", () => {
+        if (myShip.speed > enemyShip.speed) {
+            battleChoice.classList.add("hide")
+            runWin.classList.remove("hide")
+        } else {
+            let partialLootLoss = myShip.loot -= (Math.floor(enemyShip.loot / 4))
+            myShipLoot.innerHTML = "Loot: " + partialLootLoss
+            let partialHealthLoss = myShip.health -= Math.floor((enemyShip.attack / 4))
+            myShipHealth.innerHTML = "Health: " + partialHealthLoss
+            battleChoice.classList.add("hide")
+            runLose.classList.remove("hide")
+        }    
+    })
     
-    if (myShip.attack > enemyShip.attack) {
-        let moreLoot = myShip.loot += enemyShip.loot
-        myShipLoot.innerHTML = "Loot: " + moreLoot
-        myShip.health += (Math.floor(enemyShip.attack / 10))
-        myShipHealth.innerHTML = "Health: " + myShip.health
-        battleChoice.classList.add("hide") 
-        attackWin.classList.remove("hide")
-    } else { 
-        let lessLoot = myShip.loot -= (enemyShip.loot / 10)
-        myShipLoot.innerHTML = "Loot: " + lessLoot
-        Math.floor(myShip.health -= (enemyShip.attack / 2))
-        myShipHealth.innerHTML = "Health: " + myShip.health
-        battleChoice.classList.add("hide")
-        attackLose.classList.remove("hide")
-    }
-    console.log(myShip.loot)
-    console.log(myShip.health)
-})
-const runWin = document.querySelector(".runWin")
-const runLose = document.querySelector(".runLose")
-document.querySelector("#next5-run").addEventListener("click", () => {
-    if (myShip.speed > enemyShip.speed) {
-        battleChoice.classList.add("hide")
-        runWin.classList.remove("hide")
-    } else {
-        let partialLootLoss = myShip.loot -= (Math.floor(enemyShip.loot / 4))
-        myShipLoot.innerHTML = "Loot: " + partialLootLoss
-        let partialHealthLoss = myShip.health -= Math.floor((enemyShip.attack / 4))
-        myShipHealth.innerHTML = "Health: " + partialHealthLoss
-        battleChoice.classList.add("hide")
-        runLose.classList.remove("hide")
-    }
-    
-})
-
-
-//ENDING RESULT
-const gameOver = document.querySelector("#game-over")
-document.querySelector("#start-over").addEventListener("click", () => {
+    const gameOver = document.querySelector("#game-over")
+    document.querySelector("#start-over").addEventListener("click", () => {
     gameOver.classList.add("hide")
     story1.classList.remove("hide")
-})
+    })
+    if (myShip.health <= 0 || myShip.loot <=0) {
+        result.classList.add("hide")
+        gameOver.classList.remove("hide")
+    }
 
-const survived = document.querySelector("#survived")
-document.querySelector("start-over").addEventListener("click", () => {
-    survived.classList.add("hide")
-    story1.classList.remove("hide")
-})
+    document.querySelector("#next6").addEventListener("click", () => {
+        result.classList.add("hide")
+        battleChoice.classList.remove("hide")
+    })
+} while (myShip.health <= 0 || myShip.loot <= 0)
 
-const thrived = document.querySelector("#thrived")
-document.querySelector("#start-over").addEventListener("click", () => {
-    thrived.classList.add("hide")
-    story1.classList.remove("hide")
-})
+
+
+// //ENDING RESULT
+
+
+// const survived = document.querySelector("#survived")
+// document.querySelector("#start-over").addEventListener("click", () => {
+//     survived.classList.add("hide")
+//     story1.classList.remove("hide")
+// })
+
+// const thrived = document.querySelector("#thrived")
+// document.querySelector("#start-over").addEventListener("click", () => {
+//     thrived.classList.add("hide")
+//     story1.classList.remove("hide")
+// })
 
 
 // currentSlideOff = document.querySelector(".title").style.display = "none";
