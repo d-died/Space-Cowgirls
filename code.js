@@ -46,6 +46,8 @@ let battleChoice = document.querySelector(".battleChoice")
 let attackWin = document.querySelector(".attackWin")
 let attackLose = document.querySelector(".attackLose")
 let result = document.querySelectorAll("result")
+
+//BATTLE CHOICE
 do {
    
 
@@ -69,10 +71,8 @@ do {
     
     })
 
-
-//BATTLE CHOICE
   
-    document.querySelector("#next5-attack").addEventListener("click", () => {
+    document.querySelector("#attack").addEventListener("click", () => {
         if (myShip.attack > enemyShip.attack) {
             let moreLoot = myShip.loot += enemyShip.loot
             myShipLoot.innerHTML = "Loot: " + moreLoot
@@ -94,7 +94,7 @@ do {
 
     const runWin = document.querySelector(".runWin")
     const runLose = document.querySelector(".runLose")
-    document.querySelector("#next5-run").addEventListener("click", () => {
+    document.querySelector("#run").addEventListener("click", () => {
         if (myShip.speed > enemyShip.speed) {
             battleChoice.classList.add("hide")
             runWin.classList.remove("hide")
@@ -118,9 +118,21 @@ do {
         gameOver.classList.remove("hide")
     }
 
-    document.querySelector("#next6").addEventListener("click", () => {
+    document.querySelector(".next6").addEventListener("click", (e) => {
+        console.log(result)
         result.classList.add("hide")
+        
+        //WHAT IS HAPPENING:
+        //When I click the ".next6" button, nothing happens. I get an error that reads:
+        //code.js:123 Uncaught TypeError: Cannot read properties of undefined (reading 'add' at HTMLButtonElement. in in 123.
+        //The button/event listener is working, because the error doesn't show up until I click the button,
+        //but the functions after (add hide and remove hide) are not. 
+        
+        //WHAT SHOULD BE HAPPENING:
+        //When I click ".next6", the current slide (.result) is supposed to hide, 
+        //and we return to the battleChoice slide (see coded out "BATTLE CHOICE" above) at the top of this do/while loop.
         battleChoice.classList.remove("hide")
+        // e.stopPropagation()
     })
 } while (myShip.health <= 0 || myShip.loot <= 0)
 
