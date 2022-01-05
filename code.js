@@ -2,6 +2,8 @@
 //An event listener to change the shade of buttons (ie. all black to white) when you hover over them
 //????? A general "story" button that always fades current element and activates to display the next?
 
+
+//STORY:
 const title = document.querySelector(".title")
 const story1 = document.querySelector(".story1")
 document.querySelector("#titleNext").addEventListener("click", () => {
@@ -22,9 +24,12 @@ document.querySelector("#storyNext2").addEventListener("click", () => {
     story3.classList.remove("hide")
 })
 
+
+//BATTLE
 const enemyShip = {
     attack: Math.floor(Math.random() * (95 - 45) + 45),
-    speed: Math.floor(Math.random() * (80 - 20) + 20),
+    // speed: Math.floor(Math.random() * (80 - 20) + 20),
+    speed: 75,
     loot: Math.floor(Math.random() * (175000 - 50000) + 50000)}
 const myShip = {attack: 70, speed: 52, health: 100, loot: 50000}
 
@@ -59,6 +64,8 @@ document.querySelector("#storyNext4").addEventListener("click", () => {
     
 })
 
+
+//BATTLE CHOICE
 const attackWin = document.querySelector(".attackWin")
 const attackLose = document.querySelector(".attackLose")
 
@@ -89,8 +96,10 @@ document.querySelector("#next5-run").addEventListener("click", () => {
         battleChoice.classList.add("hide")
         runWin.classList.remove("hide")
     } else {
-        myShip.health -= Math.floor((enemyShip.attack /4))
-        myShipHealth.innerHTML = "Health: " + myShip.health
+        let partialLootLoss = myShip.loot -= (Math.floor(enemyShip.loot / 4))
+        myShipLoot.innerHTML = "Loot: " + partialLootLoss
+        let partialHealthLoss = myShip.health -= Math.floor((enemyShip.attack / 4))
+        myShipHealth.innerHTML = "Health: " + partialHealthLoss
         battleChoice.classList.add("hide")
         runLose.classList.remove("hide")
     }
@@ -98,7 +107,7 @@ document.querySelector("#next5-run").addEventListener("click", () => {
 })
 
 
-//Ending result slides that allow user to start over
+//ENDING RESULT
 const gameOver = document.querySelector("#game-over")
 document.querySelector("#start-over").addEventListener("click", () => {
     gameOver.classList.add("hide")
