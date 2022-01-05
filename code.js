@@ -22,8 +22,10 @@ document.querySelector("#storyNext2").addEventListener("click", () => {
     story3.classList.remove("hide")
 })
 
-const enemyShip = {attack: Math.floor(Math.random() * (95 - 45) + 45),
-    speed: Math.floor(Math.random() * (80 - 20) + 20)}
+const enemyShip = {
+    attack: Math.floor(Math.random() * (95 - 45) + 45),
+    speed: Math.floor(Math.random() * (80 - 20) + 20),
+    loot: Math.floor(Math.random() * (175000 - 50000) + 50000)}
 const myShip = {attack: 70, speed: 52, health: 100, loot: 50000}
 
 const story4 = document.querySelector(".story4")
@@ -46,6 +48,7 @@ document.querySelector("#storyNext4").addEventListener("click", () => {
     }
     console.log(enemyShip.attack)
     console.log(enemyShip.speed)
+    console.log(enemyShip.loot)
     story4.classList.add("hide")
     myShipHealth.classList.remove("hide")
     myShipHealth.innerHTML = "Health: " + myShip.health
@@ -58,15 +61,21 @@ document.querySelector("#storyNext4").addEventListener("click", () => {
 
 const attackWin = document.querySelector(".attackWin")
 const attackLose = document.querySelector(".attackLose")
+
 document.querySelector("#next5-attack").addEventListener("click", () => {
+    
     if (myShip.attack > enemyShip.attack) {
-        myShip.loot += 50000;
+        let moreLoot = myShip.loot += enemyShip.loot
+        myShipLoot.innerHTML = "Loot: " + moreLoot
         myShip.health += (Math.floor(enemyShip.attack / 10))
+        myShipHealth.innerHTML = "Health: " + myShip.health
         battleChoice.classList.add("hide") 
         attackWin.classList.remove("hide")
     } else { 
-        myShip.health -= enemyShip.attack / 2
-        myShipLoot -= 5000
+        let lessLoot = myShip.loot -= (enemyShip.loot / 10)
+        myShipLoot.innerHTML = "Loot: " + lessLoot
+        Math.floor(myShip.health -= (enemyShip.attack / 2))
+        myShipHealth.innerHTML = "Health: " + myShip.health
         battleChoice.classList.add("hide")
         attackLose.classList.remove("hide")
     }
@@ -80,6 +89,8 @@ document.querySelector("#next5-run").addEventListener("click", () => {
         battleChoice.classList.add("hide")
         runWin.classList.remove("hide")
     } else {
+        myShip.health -= Math.floor((enemyShip.attack /4))
+        myShipHealth.innerHTML = "Health: " + myShip.health
         battleChoice.classList.add("hide")
         runLose.classList.remove("hide")
     }
@@ -197,5 +208,6 @@ document.querySelector("#start-over").addEventListener("click", () => {
     //After third ship, "we need to head home. "
     //ATTACK reactions: if user > enemy && enemy attack is within 5 pts, the user still takes some damage. 
     //Loot values: dependent on attack stat of ship || dependent on the ratio of comparison values
+    //Different, semi-random lookout alerts (3-4 options for either "greater" or "lesser")
 //Styling:
 //Music for various sections (title & story slides, ship display, each enemy ship, battle outcome, each 3 ending)
