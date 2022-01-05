@@ -48,10 +48,12 @@ document.querySelector("#storyNext4").addEventListener("click", () => {
     console.log(enemyShip.speed)
     story4.classList.add("hide")
     myShipHealth.classList.remove("hide")
-    myShipHealth.innerHTML = myShipHealth.innerHTML += myShip.health
+    myShipHealth.innerHTML = "Health: " + myShip.health
     myShipLoot.classList.remove("hide")
-    myShipLoot.innerHTML = myShipLoot.innerHTML += myShip.loot
+    myShipLoot.innerHTML = "Health: " + myShip.loot
     battleChoice.classList.remove("hide")
+
+    
 })
 
 const attackWin = document.querySelector(".attackWin")
@@ -68,7 +70,8 @@ document.querySelector("#next5-attack").addEventListener("click", () => {
         battleChoice.classList.add("hide")
         attackLose.classList.remove("hide")
     }
-    
+    console.log(myShip.loot)
+    console.log(myShip.health)
 })
 const runWin = document.querySelector(".runWin")
 const runLose = document.querySelector(".runLose")
