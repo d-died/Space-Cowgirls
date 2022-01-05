@@ -20,6 +20,12 @@ body {
     text-align: center;
 }
 
+.shipStats {
+    color: white;
+    font-size: 40px;
+    justify-content: right;
+}
+
 .button {
     background-color: #ffffff;
     border: 7px solid #ff00ff; 

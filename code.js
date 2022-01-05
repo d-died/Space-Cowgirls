@@ -16,28 +16,34 @@ document.querySelector("#storyNext").addEventListener("click", () => {
 })
 
 
-const three = document.querySelector(".slide3")
+const story3 = document.querySelector(".story3")
 document.querySelector("#storyNext2").addEventListener("click", () => {
     story2.classList.add("hide")
-    three.classList.remove("hide")
-})
-
-const four = document.querySelector(".slide4")
-document.querySelector("#next3").addEventListener("click", () => {
-    three.classList.add("hide")
-    four.classList.remove("hide")
+    story3.classList.remove("hide")
 })
 
 const enemyShip = {attack: Math.floor(Math.random() * (95 - 45) + 45),
-                    speed: Math.floor(Math.random() * (80 - 20) + 20)}
+    speed: Math.floor(Math.random() * (80 - 20) + 20)}
 const myShip = {attack: 70, speed: 52, health: 100, loot: 50000}
-const myShipDiv = document.querySelector(".myShip")
 
-const five = document.querySelector(".slide5")
-document.querySelector("#next4").addEventListener("click", () => {
-    four.classList.add("hide")
-    five.classList.remove("hide")
-    myShipDiv.classList.remove("hide")
+const story4 = document.querySelector(".story4")
+// const lookout = document.querySelector()
+document.querySelector("#storyNext3").addEventListener("click", () => {
+    story3.classList.add("hide")
+    story4.classList.remove("hide")
+    // if (myShip.attack > enemyShip.attack) {
+
+    // }
+})
+
+const myShipHealth = document.querySelector("#health")
+const myShipLoot = document.querySelector("#loot")
+const battleChoice = document.querySelector(".battleChoice")
+document.querySelector("#storyNext4").addEventListener("click", () => {
+    story4.classList.add("hide")
+    myShipHealth.classList.remove("hide")
+    myShipLoot.classList.remove("hide")
+    battleChoice.classList.remove("hide")
 })
 
 const attackWin = document.querySelector(".attackWin")
@@ -66,10 +72,22 @@ document.querySelector("#next5-run").addEventListener("click", () => {
 })
 
 
-
+//Ending result slides that allow user to start over
 const gameOver = document.querySelector("#game-over")
 document.querySelector("#start-over").addEventListener("click", () => {
     gameOver.classList.add("hide")
+    story1.classList.remove("hide")
+})
+
+const survived = document.querySelector("#survived")
+document.querySelector("start-over").addEventListener("click", () => {
+    survived.classList.add("hide")
+    story1.classList.remove("hide")
+})
+
+const thrived = document.querySelector("#thrived")
+document.querySelector("#start-over").addEventListener("click", () => {
+    thrived.classList.add("hide")
     story1.classList.remove("hide")
 })
 
@@ -157,7 +175,12 @@ document.querySelector("#start-over").addEventListener("click", () => {
 
 
 //IF YOU GOT EXTRA TIME IDEAS (marked with ***):
-//Ship selection: there are 3 different choices
-//3 choices: attack, run, or ally
-//ATTACK reactions: if user > enemy && enemy attack is within 5 pts, the user still takes some damage. 
-//Loot values: dependent on attack stat of ship || dependent on the ratio of comparison values
+//Game elements:
+    //Ship selection: there are 3 different choices
+    //3 choices: attack, run, or ally/negotiate
+    //If "game over", have an option to either "keep playing" or "start over"
+    //After third ship, "we need to head home. "
+    //ATTACK reactions: if user > enemy && enemy attack is within 5 pts, the user still takes some damage. 
+    //Loot values: dependent on attack stat of ship || dependent on the ratio of comparison values
+//Styling:
+//Music for various sections (title & story slides, ship display, each enemy ship, battle outcome, each 3 ending)

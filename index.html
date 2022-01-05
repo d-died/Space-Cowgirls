@@ -10,23 +10,13 @@
 </head>
 <body>
 
-<!--DIV element for title screen
-This will include:
-"SPACE COWGIRLS" title
-creator's name & year
-Button to start
-(JS.TITLE)--> 
 
 <div class ="title">
     <h1>Yeehaw, Space Cowgirls!</h1>
+    <h3 id="author">created by: derek sumpmann</h3>
+    <h3 id="year">2022</h3>
     <button class="button" id="titleNext">Giddyup!</button>
 </div>
-
-<!-- DIV element for background/setting text
-This will include:
--1 or 2 screens of text to scroll through
--A final text screen reading: "Let's get you into the cockpit"
--A button to moves to next div element (JS.BACKGROUND) -->
 
 <div class="story1 hide">
     <p>In the year 4430, a squad of fearless cowgirls zoomed throughout the galaxies.<br>
@@ -49,14 +39,14 @@ This will include:
 3. button to select a ship (a check box?)
 4. button to confirm choice and continue -->
 
-<div class = "slide3 hide">
-    <p>So we meet our girls at the Cletus' Repair Shop.<br>
+<div class = "story3 hide">
+    <p>We meet our girls at the Cletus' Repair Shop.<br>
     "Ladies, I need to spend a whole month on this damn thing.<br>
     And I can tell you right now, it's not going to be cheap.<br>
     I estimate 475k, at least. But you don't have that money, do ya?<br>
     How's this? Cuz Mama Cletus loves you, I'll let you have my best loaner.<br>
     She's a piece of shit, but she'll do the trick!"</p>
-    <button class="button" id="next3">>></button>
+    <button class="button" id="storyNext3">>></button>
 </div>
 
 
@@ -64,10 +54,10 @@ This will include:
 1. HEALTH
 2. (VERY SICKLY TO START) LOOT STORAGE-->
 
-<div class="slide4 hide">
+<div class="story4 hide">
     <p>Now go out and steal some money from some of those ugly bastards!<br>
      You'll need it if you ever want this ship back, sisters! </p>
-    <button class="button" id="next4">>></button>
+    <button class="button" id="storyNext4">>></button>
 </div>
 
 <!--If you get around to this-->
@@ -85,48 +75,22 @@ This will include:
 3. LOOT stat
     -All randomly generated in JS.ENEMY SHIP
 -->
-<div class="myShip">
-    <h3 class="health hide">Health</h3>
-    <h3 class="loot hide">Loot</h3>
-</div>
-<div class="enemy-ship hide">
-    <!--maybe an image-->
-</div>
 
-<!-- DIV element for lookout alert announcement
-This will include:
-1. A picture of the enemy ship
-2. Text:
-    -Generic: "The lookout just found a ship incoming on the radar"
-    -Variant: "According to my estimates, that ship __________" (see JS.LOOKOUT ALERT)
-3. button to continue-->
-
-<div class="slide5 hide">
-    <p><span></span></br>What do you think we should do?!</p>
+<h1 class="shipStats hide" id="health">Health: </h1>
+<h1 class="shipStats hide" id="loot">Loot: </h1>
+<div class="battleChoice hide">
+    <p><span id="lookout"></span></br>What do you think we should do?!</p>
     <button class="button" id="next5-attack">Attack</button>
     <button class="button" id="next5-run">Run</button>
 </div>
-
-
-
-<!-- DIV element for attack/run button screen
-This will include:
-1. Text asking "What should we do, captain?!"
-2. Two Buttons: 
-    -"Attack"
-    -"GTFO of there"
-3. Contingent responses in JS.
-*4. Button to continue ... IF option 2 from JS.ATTACK/RUN -->
-<!-- ~~~~~~~~~~~~~~~~~ -->
-
 <div class="attackWin hide">
     <p>We did it!!! I can't believe it!!!</br>
     We even stole all their money, too! That much closer to getting our ship back!</p>
     <button class="button" id="next6"></button>
 </div>
 <div class="attackLose hide">
-    <p>OUCH! We took some serious damage. </p>
-    <button clas="button" id="next6"
+    <p>OUCH! We took some serious damage. Better luck next time.</p>
+    <button clas="button" id="next6"></button>
 </div>
 
 <div class="runWin hide">
@@ -140,6 +104,34 @@ This will include:
     At least we didn't try and fight.<br>
     We only took a fraction of the damage they could've dealt!</p>
 </div>
+
+<div class="enemy-ship hide">
+    <!--maybe an image-->
+</div>
+
+<!-- DIV element for lookout alert announcement
+This will include:
+1. A picture of the enemy ship
+2. Text:
+    -Generic: "The lookout just found a ship incoming on the radar"
+    -Variant: "According to my estimates, that ship __________" (see JS.LOOKOUT ALERT)
+3. button to continue-->
+
+
+
+
+
+<!-- DIV element for attack/run button screen
+This will include:
+1. Text asking "What should we do, captain?!"
+2. Two Buttons: 
+    -"Attack"
+    -"GTFO of there"
+3. Contingent responses in JS.
+*4. Button to continue ... IF option 2 from JS.ATTACK/RUN -->
+<!-- ~~~~~~~~~~~~~~~~~ -->
+
+
 
 <!--DIV element to group all end result options>
 DIV element for GAME OVER
@@ -168,6 +160,7 @@ This will include:
 2. Button to start over -->
 <div class="ending hide" id="thrived">
     <h1>Debt-free! Stress-free! Let's PARTY GIRLS!! YEEHAW!</h1>
+    <button class="button" id="start-over">Again!!!</button>
 </div>
 
 
