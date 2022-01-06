@@ -52,95 +52,114 @@ let battleChoice = document.querySelector(".battleChoice")
 let attackWin = document.querySelector(".attackWin")
 let attackLose = document.querySelector(".attackLose")
 let result = document.querySelectorAll(".result")
-
+let gameOver = document.querySelector("#game-over")
 //BATTLE CHOICE
 if (myShip.health >= 0 || myShip.loot <= 275000) {
-   
+    battle() 
+} else if (myShip.health <= 0 || myShip.loot >= 275000) { 
+    attackWin.classList.add("hide")
+    gameOver.classList.remove("hide")
+}
+
+function battle() {
     document.querySelector("#storyNext4").addEventListener("click", () => {
-        if (myShip.attack > enemyShip.attack) {
-            lookout.innerHTML = "We've got an enemy ahead. It'd be a hard fight, but we might stand a chance."
-        } else if (myShip.attack < enemyShip.attack) {
-            lookout.innerHTML = "Yikes boss. Massive ship just popped up on the radar. <br> They are armed to the teeth."
+            if (myShip.attack > enemyShip.attack) {
+                lookout.innerHTML = "We've got an enemy ahead. It'd be a hard fight, but we might stand a chance."
+            } else if (myShip.attack < enemyShip.attack) {
+                lookout.innerHTML = "Yikes boss. Massive ship just popped up on the radar. <br> They are armed to the teeth."
+                
+            }
+            // console.log(enemyShip.attack)
+            // console.log(enemyShip.speed)
+            // console.log(enemyShip.loot)
+            console.log(`health: ${myShip.health}`)
+            console.log(`loot: ${myShip.loot}`)
+            story4.classList.add("hide")
+            myShipHealth.classList.remove("hide")
+            myShipHealth.innerHTML = "Health: " + myShip.health
+            myShipLoot.classList.remove("hide")
+            myShipLoot.innerHTML = "Health: " + myShip.loot
+            battleChoice.classList.remove("hide")
+
+        
+        })
+
+    
+        document.querySelector("#attack").addEventListener("click", () => {
+            if (myShip.attack > enemyShip.attack) {
+                let moreLoot = myShip.loot += enemyShip.loot
+                myShipLoot.innerHTML = "Loot: " + moreLoot
+                let smallHealthWin = Math.floor(myShip.health += enemyShip.attack / 10)
+                myShipHealth.innerHTML = "Health: " + smallHealthWin
+                battleChoice.classList.add("hide") 
+                attackWin.classList.remove("hide")
+            } else {
+                let lessLoot = myShip.loot -= (enemyShip.loot / 10)
+                myShipLoot.innerHTML = "Loot: " + lessLoot
+                let HealthLost = Math.floor(myShip.health -= (enemyShip.attack / 2))
+                myShipHealth.innerHTML = "Health: " + HealthLost
+                battleChoice.classList.add("hide")
+                attackWin.classList.remove("hide")
+            }
+            console.log(`health: ${myShip.health}`)
+            console.log(`loot: ${myShip.loot}`)
+        })
+
+        const runWin = document.querySelector(".runWin")
+        const runLose = document.querySelector(".runLose")
+        document.querySelector("#run").addEventListener("click", () => {
+            if (myShip.speed > enemyShip.speed) {
+                battleChoice.classList.add("hide")
+                attackWin.classList.remove("hide")
+            } else {
+                let partialLootLoss = Math.floor(myShip.loot -= (enemyShip.loot / 4))
+                myShipLoot.innerHTML = "Loot: " + partialLootLoss
+                let partialHealthLoss = Math.floor(myShip.health -= (enemyShip.attack / 4))
+                myShipHealth.innerHTML = "Health: " + partialHealthLoss
+                battleChoice.classList.add("hide")
+                attackWin.classList.remove("hide")
+            }    
+        })
+        
+        
+        // document.querySelector("#start-over").addEventListener("click", () => {
+        // gameOver.classList.add("hide")
+        // story1.classList.remove("hide")
+        // })
+        // if (myShip.health <= 0 || myShip.loot <=0) {
+        //     result.classList.add("hide")
+        //     gameOver.classList.remove("hide")
+        // }
+
+        document.querySelector(".next6").addEventListener("click", () => {
+            // console.log(result[3])
+            // console.log("event clicked")
+            if (myShip.health <= 0 || myShip.loot >=275000) {
+                attackWin.classList.add("hide")
+                gameOver.classList.remove("hide")
+            } else { 
+                result[0].classList.add("hide")
             
-        }
-        console.log(enemyShip.attack)
-        console.log(enemyShip.speed)
-        console.log(enemyShip.loot)
-        story4.classList.add("hide")
-        myShipHealth.classList.remove("hide")
-        myShipHealth.innerHTML = "Health: " + myShip.health
-        myShipLoot.classList.remove("hide")
-        myShipLoot.innerHTML = "Health: " + myShip.loot
-        battleChoice.classList.remove("hide")
+            //WHAT IS HAPPENING:
+            //When I click the ".next6" button, nothing happens. I get an error that reads:
+            //code.js:123 Uncaught TypeError: Cannot read properties of undefined (reading 'add' at HTMLButtonElement. in in 123.
+            //The button/event listener is working, because the error doesn't show up until I click the button,
+            //but the functions after (add hide and remove hide) are not. 
+            
+            //WHAT SHOULD BE HAPPENING:
+            //When I click ".next6", the current slide (.result) is supposed to hide, 
+            //and we return to the battleChoice slide (see coded out "BATTLE CHOICE" above) at the top of this do/while loop.
+            battleChoice.classList.remove("hide")
+            console.log(`health: ${myShip.health}`)
+            console.log(`loot: ${myShip.loot}`)
+            }
+        })
 
-    
-    })
-
-  
-    document.querySelector("#attack").addEventListener("click", () => {
-        if (myShip.attack > enemyShip.attack) {
-            let moreLoot = myShip.loot += enemyShip.loot
-            myShipLoot.innerHTML = "Loot: " + moreLoot
-            let smallHealthWin = Math.floor(myShip.health += enemyShip.attack / 10)
-            myShipHealth.innerHTML = "Health: " + smallHealthWin
-            battleChoice.classList.add("hide") 
-            attackWin.classList.remove("hide")
-        } else { 
-            let lessLoot = myShip.loot -= (enemyShip.loot / 10)
-            myShipLoot.innerHTML = "Loot: " + lessLoot
-            let HealthLost = Math.floor(myShip.health -= (enemyShip.attack / 2))
-            myShipHealth.innerHTML = "Health: " + HealthLost
-            battleChoice.classList.add("hide")
-            attackWin.classList.remove("hide")
-        }
-        // console.log(myShip.loot)
-        // console.log(myShip.health)
-    })
-
-    const runWin = document.querySelector(".runWin")
-    const runLose = document.querySelector(".runLose")
-    document.querySelector("#run").addEventListener("click", () => {
-        if (myShip.speed > enemyShip.speed) {
-            battleChoice.classList.add("hide")
-            attackWin.classList.remove("hide")
-        } else {
-            let partialLootLoss = Math.floor(myShip.loot -= (enemyShip.loot / 4))
-            myShipLoot.innerHTML = "Loot: " + partialLootLoss
-            let partialHealthLoss = Math.floor(myShip.health -= (enemyShip.attack / 4))
-            myShipHealth.innerHTML = "Health: " + partialHealthLoss
-            battleChoice.classList.add("hide")
-            attackWin.classList.remove("hide")
-        }    
-    })
-    
-    const gameOver = document.querySelector("#game-over")
-    document.querySelector("#start-over").addEventListener("click", () => {
-    gameOver.classList.add("hide")
-    story1.classList.remove("hide")
-    })
-    if (myShip.health <= 0 || myShip.loot <=0) {
-        result.classList.add("hide")
-        gameOver.classList.remove("hide")
-    }
-
-    document.querySelector(".next6").addEventListener("click", () => {
-        // console.log(result[3])
-        // console.log("event clicked")
-        result[0].classList.add("hide")
-        
-        //WHAT IS HAPPENING:
-        //When I click the ".next6" button, nothing happens. I get an error that reads:
-        //code.js:123 Uncaught TypeError: Cannot read properties of undefined (reading 'add' at HTMLButtonElement. in in 123.
-        //The button/event listener is working, because the error doesn't show up until I click the button,
-        //but the functions after (add hide and remove hide) are not. 
-        
-        //WHAT SHOULD BE HAPPENING:
-        //When I click ".next6", the current slide (.result) is supposed to hide, 
-        //and we return to the battleChoice slide (see coded out "BATTLE CHOICE" above) at the top of this do/while loop.
-        battleChoice.classList.remove("hide")
-        
-    })
-} 
+}
+// else if (myShip.health <= 0 || myShip.loot >=200000) {
+//     attackWin.classList.add("hide")
+//     gameOver.classList.remove("hide")
+// }
 
 
 // switch (result) {
@@ -257,4 +276,4 @@ if (myShip.health >= 0 || myShip.loot <= 275000) {
     //Loot values: dependent on attack stat of ship || dependent on the ratio of comparison values
     //Different, semi-random lookout alerts (3-4 options for either "greater" or "lesser")
 //Styling:
-//Music for various sections (title & story slides, ship display, each enemy ship, battle outcome, each 3 ending)
+//Music for various sections (title & story slides, ship display, each enemy ship, battle outcome, each 3 ending
