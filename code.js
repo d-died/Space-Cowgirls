@@ -88,14 +88,14 @@ function battle() {
     
         document.querySelector("#attack").addEventListener("click", () => {
             if (myShip.attack > enemyShip.attack) {
-                let moreLoot = myShip.loot += enemyShip.loot
+                let moreLoot = Math.floor(myShip.loot += enemyShip.loot)
                 myShipLoot.innerHTML = "Loot: " + moreLoot
                 let smallHealthWin = Math.floor(myShip.health += enemyShip.attack / 10)
                 myShipHealth.innerHTML = "Health: " + smallHealthWin
                 battleChoice.classList.add("hide") 
                 attackWin.classList.remove("hide")
             } else {
-                let lessLoot = myShip.loot -= (enemyShip.loot / 10)
+                let lessLoot = Math.floor(myShip.loot -= (enemyShip.loot / 10))
                 myShipLoot.innerHTML = "Loot: " + lessLoot
                 let HealthLost = Math.floor(myShip.health -= (enemyShip.attack / 2))
                 myShipHealth.innerHTML = "Health: " + HealthLost
@@ -151,15 +151,19 @@ function battle() {
             }
         })
 
-        document.querySelector("#start-over").addEventListener("click", () => {
-            gameOver.classList.add("hide")
-            story4.classList.remove("hide")
-        })
+        // document.querySelector("#start-over").addEventListener("click", () => {
+        //     myShipLoot.classList.add("hide")
+        //     myShipHealth.classList.add("hide")
+        //     gameOver.classList.add("hide")
+        //     story4.classList.remove("hide")
+        // })
 
-        document.querySelector("#once-more").addEventListener("click", () => {
-            thrived.classList.add("hide")
-            title.classList.remove("hide")
-        })
+        // document.querySelector("#once-more").addEventListener("click", () => {
+        //     myShipLoot.classList.add("hide")
+        //     myShipHealth.classList.add("hide")
+        //     thrived.classList.add("hide")
+        //     title.classList.remove("hide")
+        // })
 }
 // else if (myShip.health <= 0 || myShip.loot >=200000) {
 //     attackWin.classList.add("hide")
@@ -282,3 +286,6 @@ function battle() {
     //Different, semi-random lookout alerts (3-4 options for either "greater" or "lesser")
 //Styling:
 //Music for various sections (title & story slides, ship display, each enemy ship, battle outcome, each 3 ending
+//At the end, print how much money there is to spare.
+    //Perhaps even options of (if remainder > ___, we can buy snacks/a new ship/whatever). 
+    //  would probably necessitate the option to go back and get even more points cuz you aren't gonna get THAT far over the goal. 
