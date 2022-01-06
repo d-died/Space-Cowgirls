@@ -29,8 +29,14 @@ document.querySelector("#storyNext2").addEventListener("click", () => {
 const enemyShip = {
     attack: Math.floor(Math.random() * (95 - 45) + 45),
     speed: Math.floor(Math.random() * (80 - 20) + 20),
-    loot: Math.floor(Math.random() * (175000 - 50000) + 50000)}
-const myShip = {attack: 70, speed: 52, health: 100, loot: 50000}
+    loot: Math.floor(Math.random() * (175000 - 50000) + 50000)
+}
+const myShip = {
+    attack: 70, 
+    speed: 52, 
+    health: 100, 
+    loot: 50000
+}
 
 const story4 = document.querySelector(".story4")
 const lookout = document.querySelector("#lookout")
@@ -45,12 +51,11 @@ let myShipLoot = document.querySelector("#loot")
 let battleChoice = document.querySelector(".battleChoice")
 let attackWin = document.querySelector(".attackWin")
 let attackLose = document.querySelector(".attackLose")
-let result = document.querySelectorAll("result")
+let result = document.querySelectorAll(".result")
 
 //BATTLE CHOICE
-do {
+if (myShip.health >= 0 || myShip.loot <= 275000) {
    
-
     document.querySelector("#storyNext4").addEventListener("click", () => {
         if (myShip.attack > enemyShip.attack) {
             lookout.innerHTML = "We've got an enemy ahead. It'd be a hard fight, but we might stand a chance."
@@ -76,17 +81,17 @@ do {
         if (myShip.attack > enemyShip.attack) {
             let moreLoot = myShip.loot += enemyShip.loot
             myShipLoot.innerHTML = "Loot: " + moreLoot
-            myShip.health += (Math.floor(enemyShip.attack / 10))
-            myShipHealth.innerHTML = "Health: " + myShip.health
+            let smallHealthWin = Math.floor(myShip.health += enemyShip.attack / 10)
+            myShipHealth.innerHTML = "Health: " + smallHealthWin
             battleChoice.classList.add("hide") 
             attackWin.classList.remove("hide")
         } else { 
             let lessLoot = myShip.loot -= (enemyShip.loot / 10)
             myShipLoot.innerHTML = "Loot: " + lessLoot
-            Math.floor(myShip.health -= (enemyShip.attack / 2))
-            myShipHealth.innerHTML = "Health: " + myShip.health
+            let HealthLost = Math.floor(myShip.health -= (enemyShip.attack / 2))
+            myShipHealth.innerHTML = "Health: " + HealthLost
             battleChoice.classList.add("hide")
-            attackLose.classList.remove("hide")
+            attackWin.classList.remove("hide")
         }
         // console.log(myShip.loot)
         // console.log(myShip.health)
@@ -97,14 +102,14 @@ do {
     document.querySelector("#run").addEventListener("click", () => {
         if (myShip.speed > enemyShip.speed) {
             battleChoice.classList.add("hide")
-            runWin.classList.remove("hide")
+            attackWin.classList.remove("hide")
         } else {
-            let partialLootLoss = myShip.loot -= (Math.floor(enemyShip.loot / 4))
+            let partialLootLoss = Math.floor(myShip.loot -= (enemyShip.loot / 4))
             myShipLoot.innerHTML = "Loot: " + partialLootLoss
-            let partialHealthLoss = myShip.health -= Math.floor((enemyShip.attack / 4))
+            let partialHealthLoss = Math.floor(myShip.health -= (enemyShip.attack / 4))
             myShipHealth.innerHTML = "Health: " + partialHealthLoss
             battleChoice.classList.add("hide")
-            runLose.classList.remove("hide")
+            attackWin.classList.remove("hide")
         }    
     })
     
@@ -118,9 +123,10 @@ do {
         gameOver.classList.remove("hide")
     }
 
-    document.querySelector(".next6").addEventListener("click", (e) => {
-        console.log(result)
-        result.classList.add("hide")
+    document.querySelector(".next6").addEventListener("click", () => {
+        // console.log(result[3])
+        // console.log("event clicked")
+        result[0].classList.add("hide")
         
         //WHAT IS HAPPENING:
         //When I click the ".next6" button, nothing happens. I get an error that reads:
@@ -132,10 +138,14 @@ do {
         //When I click ".next6", the current slide (.result) is supposed to hide, 
         //and we return to the battleChoice slide (see coded out "BATTLE CHOICE" above) at the top of this do/while loop.
         battleChoice.classList.remove("hide")
-        // e.stopPropagation()
+        
     })
-} while (myShip.health <= 0 || myShip.loot <= 0)
+} 
 
+
+// switch (result) {
+//     case ""
+// }
 
 
 // //ENDING RESULT
@@ -238,6 +248,7 @@ do {
 
 //IF YOU GOT EXTRA TIME IDEAS (marked with ***):
 //Game elements:
+    //4 diferent battleChoice screens
     //Ship selection: there are 3 different choices
     //3 choices: attack, run, or ally/negotiate
     //If "game over", have an option to either "keep playing" or "start over"
