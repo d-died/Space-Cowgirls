@@ -155,6 +155,10 @@ function battle() {
             }
         })
 
+        document.querySelector("#start-over").addEventListener("click", () => {
+            gameOver.classList.add("hide")
+            story4.classList.remove("hide")
+        })
 }
 // else if (myShip.health <= 0 || myShip.loot >=200000) {
 //     attackWin.classList.add("hide")
