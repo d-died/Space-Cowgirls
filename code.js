@@ -53,6 +53,7 @@ let attackWin = document.querySelector(".attackWin")
 let attackLose = document.querySelector(".attackLose")
 let result = document.querySelectorAll(".result")
 let gameOver = document.querySelector("#game-over")
+let thrived = document.querySelector("#thrived")
 //BATTLE CHOICE
 if (myShip.health >= 0 || myShip.loot <= 275000) {
     battle() 
@@ -134,30 +135,30 @@ function battle() {
         document.querySelector(".next6").addEventListener("click", () => {
             // console.log(result[3])
             // console.log("event clicked")
-            if (myShip.health <= 0 || myShip.loot >=275000) {
+            if (myShip.health <= 0) {
+                myShipHealth.innerHTML = "YOU DEAD"
+                myShipLoot.innerHTML = "Loot: Floating off into Space"
                 attackWin.classList.add("hide")
                 gameOver.classList.remove("hide")
+            } else if (myShip.loot >= 275000) {
+                attackWin.classList.add("hide")
+                thrived.classList.remove("hide")
             } else { 
                 result[0].classList.add("hide")
-            
-            //WHAT IS HAPPENING:
-            //When I click the ".next6" button, nothing happens. I get an error that reads:
-            //code.js:123 Uncaught TypeError: Cannot read properties of undefined (reading 'add' at HTMLButtonElement. in in 123.
-            //The button/event listener is working, because the error doesn't show up until I click the button,
-            //but the functions after (add hide and remove hide) are not. 
-            
-            //WHAT SHOULD BE HAPPENING:
-            //When I click ".next6", the current slide (.result) is supposed to hide, 
-            //and we return to the battleChoice slide (see coded out "BATTLE CHOICE" above) at the top of this do/while loop.
-            battleChoice.classList.remove("hide")
-            console.log(`health: ${myShip.health}`)
-            console.log(`loot: ${myShip.loot}`)
+                battleChoice.classList.remove("hide")
+                console.log(`health: ${myShip.health}`)
+                console.log(`loot: ${myShip.loot}`)
             }
         })
 
         document.querySelector("#start-over").addEventListener("click", () => {
             gameOver.classList.add("hide")
             story4.classList.remove("hide")
+        })
+
+        document.querySelector("#once-more").addEventListener("click", () => {
+            thrived.classList.add("hide")
+            title.classList.remove("hide")
         })
 }
 // else if (myShip.health <= 0 || myShip.loot >=200000) {
