@@ -1,315 +1,243 @@
-//GLOBAL:
-//An event listener to change the shade of buttons (ie. all black to white) when you hover over them
-//????? A general "story" button that always fades current element and activates to display the next?
+const title = document.querySelector('.title')
+const story1 = document.querySelector('.story1')
 
-
-//STORY:
-const title = document.querySelector(".title")
-const story1 = document.querySelector(".story1")
-document.querySelector("#titleNext").addEventListener("click", () => {
-    title.classList.add("hide")
-    story1.classList.remove("hide")
+document.querySelector('#titleNext').addEventListener('click', () => {
+  title.classList.add('hide')
+  story1.classList.remove('hide')
 })
 
-const story2 = document.querySelector(".story2")
-document.querySelector("#storyNext").addEventListener("click", () => {
-    story1.classList.add("hide")
-    story2.classList.remove("hide")
+const story2 = document.querySelector('.story2')
+document.querySelector('#storyNext').addEventListener('click', () => {
+  story1.classList.add('hide')
+  story2.classList.remove('hide')
 })
 
-
-const story3 = document.querySelector(".story3")
-document.querySelector("#storyNext2").addEventListener("click", () => {
-    story2.classList.add("hide")
-    story3.classList.remove("hide")
+const story3 = document.querySelector('.story3')
+document.querySelector('#storyNext2').addEventListener('click', () => {
+  story2.classList.add('hide')
+  story3.classList.remove('hide')
 })
 
+const story4 = document.querySelector('.story4')
+const lookout = document.querySelector('#lookout')
+document.querySelector('#storyNext3').addEventListener('click', () => {
+  story3.classList.add('hide')
+  story4.classList.remove('hide')
+})
 
-//BATTLE
-const enemyShip = {
-    attack: Math.floor(Math.random() * (95 - 45) + 45),
-    speed: Math.floor(Math.random() * (80 - 20) + 20),
-    loot: Math.floor(Math.random() * (175000 - 50000) + 50000)
+const story5 = document.querySelector('.story5')
+document.querySelector('#storyNext4').addEventListener('click', () => {
+  story4.classList.add('hide')
+  story5.classList.remove('hide')
+})
+
+class enemyShip {
+  constructor(attack, speed, loot) {
+    this.attack = attack
+    this.speed = speed
+    this.loot = loot
+  }
 }
-const myShip = {
-    attack: 70, 
-    speed: 52, 
-    health: 100, 
-    loot: 50000
+class myShip {
+  constructor(attack, speed, loot, health) {
+    this.attack = attack
+    this.speed = speed
+    this.loot = loot
+    this.health = health
+  }
 }
+let cletusShip = new myShip(70, 50, 50000, 100)
+let myShipStats = document.querySelector('.myShipStats')
+let myShipHealth = document.querySelector('#health')
+let healthBar = document.querySelector('.healthBar')
+let myShipLoot = document.querySelector('#loot')
+let story6 = document.querySelector('.story6')
 
-const story4 = document.querySelector(".story4")
-const lookout = document.querySelector("#lookout")
-document.querySelector("#storyNext3").addEventListener("click", () => {
-    story3.classList.add("hide")
-    story4.classList.remove("hide")
-    
+document.querySelector('#storyNext5').addEventListener('click', () => {
+  story5.classList.add('hide')
+  story6.classList.remove('hide')
+  myShipStats.classList.remove('hide')
+  myShipLoot.innerHTML = '💰 ' + cletusShip.loot
 })
 
-let myShipHealth = document.querySelector("#health")
-let myShipLoot = document.querySelector("#loot")
-let battleChoice = document.querySelector(".battleChoice")
-let attackWin = document.querySelector(".attackWin")
-let attackLose = document.querySelector(".attackLose")
-let result = document.querySelectorAll(".result")
-let gameOver = document.querySelector("#game-over")
-let thrived = document.querySelector("#thrived")
-let runWin = document.querySelector(".runWin")
-let runLose = document.querySelector(".runLose")
-//BATTLE CHOICE
-if (myShip.health >= 0 || myShip.loot <= 275000) {
-    battle() 
-} else if (myShip.health <= 0 || myShip.loot >= 275000) { 
-    attackWin.classList.add("hide")
-    gameOver.classList.remove("hide")
+let battleChoice = document.querySelector('.battleChoice')
+let battleSearch = document.querySelector('.battleSearch')
+let attackWin = document.querySelector('.attackWin')
+let attackLose = document.querySelector('.attackLose')
+let result = document.querySelectorAll('.result')
+let gameOver = document.querySelector('#game-over')
+let thrived = document.querySelector('#thrived')
+let runWin = document.querySelector('.runWin')
+let runLose = document.querySelector('.runLose')
+
+if (cletusShip.health >= 0 || cletusShip.loot <= 300000) {
+  battle()
+} else {
+  gameOver.classList.remove('hide')
 }
 
 function battle() {
-    document.querySelector("#storyNext4").addEventListener("click", () => {
-            if (myShip.attack > enemyShip.attack) {
-                lookout.innerHTML = "We've got an enemy ahead. It'd be a hard fight, but we might stand a chance. "
-            } else if (myShip.attack < enemyShip.attack) {
-                lookout.innerHTML = "Yikes boss. Massive ship just popped up on the radar. <br> They are armed to the teeth. "
-                
-            }
-            console.log(enemyShip.attack)
-            console.log(enemyShip.speed)
-            // console.log(enemyShip.loot)
-            console.log(`health: ${myShip.health}`)
-            console.log(`loot: ${myShip.loot}`)
-            story4.classList.add("hide")
-            myShipHealth.classList.remove("hide")
-            myShipHealth.innerHTML = "Health: " + myShip.health
-            myShipLoot.classList.remove("hide")
-            myShipLoot.innerHTML = "Loot: " + myShip.loot
-            battleChoice.classList.remove("hide")
+  let enemyShip1 = new enemyShip(
+    Math.floor(Math.random() * (95 - 45) + 45),
+    Math.floor(Math.random() * (80 - 20) + 20),
+    Math.floor(Math.random() * (115000 - 30000) + 30000)
+  )
 
-        
-        })
+  document.querySelector('#storyNext6').addEventListener('click', () => {
+    story6.classList.add('hide')
+    battleChoice.classList.remove('hide')
+    if (cletusShip.attack > enemyShip1.attack) {
+      lookout.innerHTML =
+        'There we go! Enemy ahead. Well-equipped, looks comparable to our artillery. Could be a fun fight ... or not.'
+    } else if (cletusShip.attack < enemyShip1.attack) {
+      lookout.innerHTML =
+        "Yikes! The ship on the radar looks to be armed to the teeth. It's a risk...could be fun! 😈"
+    }
+  })
 
-    
-        document.querySelector("#attack").addEventListener("click", () => {
-            if (myShip.attack > enemyShip.attack) {
-                let moreLoot = Math.floor(myShip.loot += enemyShip.loot)
-                myShipLoot.innerHTML = "Loot: " + moreLoot
-                let smallHealthWin = Math.floor(myShip.health += enemyShip.attack / 10)
-                myShipHealth.innerHTML = "Health: " + smallHealthWin
-                battleChoice.classList.add("hide") 
-                attackWin.classList.remove("hide")
-                attackWin.classList.add("")
-            } else {
-                let lessLoot = Math.floor(myShip.loot -= (enemyShip.loot / 10))
-                myShipLoot.innerHTML = "Loot: " + lessLoot
-                let HealthLost = Math.floor(myShip.health -= (enemyShip.attack / 2))
-                myShipHealth.innerHTML = "Health: " + HealthLost
-                battleChoice.classList.add("hide")
-                attackLose.classList.remove("hide")
-            }
-        })
+  document.querySelector('#battleBegin').addEventListener('click', () => {
+    battleSearch.classList.add('hide')
+    battleChoice.classList.remove('hide')
+    if (cletusShip.attack > enemyShip1.attack) {
+      lookout.innerHTML =
+        "We've got an enemy ahead. Well-equipped, comparable to our artillery. Could be a fun fight ... or not."
+    } else if (cletusShip.attack < enemyShip1.attack) {
+      lookout.innerHTML =
+        "Yikes! The ship on the radar looks to be armed to the teeth. It'd be a risk! But it could be fun!"
+    }
+  })
 
-       
-        document.querySelector("#run").addEventListener("click", () => {
-            if (myShip.speed > enemyShip.speed) {
-                battleChoice.classList.add("hide")
-                runWin.classList.remove("hide")
-            } else {
-                let partialLootLoss = Math.floor(myShip.loot -= (enemyShip.loot / 4))
-                myShipLoot.innerHTML = "Loot: " + partialLootLoss
-                let partialHealthLoss = Math.floor(myShip.health -= (enemyShip.attack / 4))
-                myShipHealth.innerHTML = "Health: " + partialHealthLoss
-                battleChoice.classList.add("hide")
-                runLose.classList.remove("hide")
-            }    
-        })
-        
-        
-        // document.querySelector("#start-over").addEventListener("click", () => {
-        // gameOver.classList.add("hide")
-        // story1.classList.remove("hide")
-        // })
-        // if (myShip.health <= 0 || myShip.loot <=0) {
-        //     result.classList.add("hide")
-        //     gameOver.classList.remove("hide")
-        // }
-        let x = document.querySelectorAll(".next6")
-        console.log(x)
-        document.querySelector(".next6").addEventListener("click", (e) => {
-            // console.log(result[3])
-            // console.log("event clicked")
-            // let currentResult = e.target.id;
-            console.log(currentResult)
-            if (myShip.health <= 0) {
-                myShipHealth.innerHTML = "YOU DEAD"
-                myShipLoot.innerHTML = "Loot: Floating off into Space"
-                attackWin.classList.add("hide")
-                gameOver.classList.remove("hide")
-            } else if (myShip.loot >= 275000) {
-                attackWin.classList.add("hide")
-                thrived.classList.remove("hide")
-            } else {
-                let currentResult = e.target.id
-                console.log(currentResult)
-                switch(currentResult) {
-                    case "bigWin":
-                        attackWin.classList.add("hide"),
-                        battleChoice.classList.remove("hide")
-                        break
-                    case "bigLose":
-                        attackLose.classList.add("hide"),
-                        battleChoice.classList.remove("hide")
-                        break
-                    case "smallWin":
-                        runWin.classList.add("hide"),
-                        battleChoice.classList.remove("hide")
-                        break
-                    case "smallLose":
-                        runLose.classList.add("hide"),
-                        battleChoice.classList.remove("hide")
-                        break
-                }
-                result[0].classList.add("hide")
-                battleChoice.classList.remove("hide")
-                console.log(`health: ${myShip.health}`)
-                console.log(`loot: ${myShip.loot}`)
-            }
-        })
+  document.querySelector('#attack').addEventListener('click', () => {
+    if (cletusShip.attack >= enemyShip1.attack) {
+      let moreLoot = Math.floor((cletusShip.loot += enemyShip1.loot))
+      myShipLoot.innerHTML = '💰 ' + moreLoot
+      battleChoice.classList.add('hide')
+      attackWin.classList.remove('hide')
+    } else if (cletusShip.attack < enemyShip1.attack) {
+      let lessLoot = Math.floor((cletusShip.loot -= enemyShip1.loot / 10))
+      myShipLoot.innerHTML = '💰 ' + lessLoot
+      let healthLost = Math.floor((cletusShip.health -= enemyShip1.attack / 2))
+      healthBar.style.width = `${healthLost}%`
+      battleChoice.classList.add('hide')
+      attackLose.classList.remove('hide')
+    }
+  })
 
-        // document.querySelector("#start-over").addEventListener("click", () => {
-        //     myShipLoot.classList.add("hide")
-        //     myShipHealth.classList.add("hide")
-        //     gameOver.classList.add("hide")
-        //     story4.classList.remove("hide")
-        // })
+  document.querySelector('#run').addEventListener('click', () => {
+    console.log(cletusShip)
+    console.log(enemyShip1)
+    if (cletusShip.speed >= enemyShip1.speed) {
+      battleChoice.classList.add('hide')
+      runWin.classList.remove('hide')
+    } else if (cletusShip.speed < enemyShip1.speed) {
+      let partialLootLoss = Math.floor((cletusShip.loot -= enemyShip1.loot / 4))
+      myShipLoot.innerHTML = '💰 ' + partialLootLoss
+      let partialHealthLoss = Math.floor(
+        (cletusShip.health -= enemyShip1.attack / 4)
+      )
+      healthBar.style.width = `${partialHealthLoss}%`
+      battleChoice.classList.add('hide')
+      runLose.classList.remove('hide')
+    }
+  })
 
-        // document.querySelector("#once-more").addEventListener("click", () => {
-        //     myShipLoot.classList.add("hide")
-        //     myShipHealth.classList.add("hide")
-        //     thrived.classList.add("hide")
-        //     title.classList.remove("hide")
-        // })
+  document.getElementById('bigWin').addEventListener('click', () => {
+    if (cletusShip.health <= 0) {
+      healthBar.style.width = `0%`
+      myShipLoot.innerHTML = '💰 floats off into space 🥲'
+      attackWin.classList.add('hide')
+      gameOver.classList.remove('hide')
+    } else if (cletusShip.loot >= 300000) {
+      attackWin.classList.add('hide')
+      thrived.classList.remove('hide')
+    } else {
+      attackWin.classList.add('hide')
+      battleSearch.classList.remove('hide')
+      enemyShip1 = new enemyShip(
+        Math.floor(Math.random() * (95 - 45) + 45),
+        Math.floor(Math.random() * (80 - 20) + 20),
+        Math.floor(Math.random() * (115000 - 30000) + 30000)
+      )
+      console.log(enemyShip1)
+    }
+  })
+
+  document.getElementById('bigLose').addEventListener('click', () => {
+    if (cletusShip.health <= 0) {
+      healthBar.style.width = `0%`
+      myShipLoot.innerHTML = '💰 floats off into space 🥲'
+      attackLose.classList.add('hide')
+      gameOver.classList.remove('hide')
+    } else if (cletusShip.loot >= 300000) {
+      attackLose.classList.add('hide')
+      thrived.classList.remove('hide')
+    } else {
+      attackLose.classList.add('hide')
+      battleSearch.classList.remove('hide')
+      enemyShip1 = new enemyShip(
+        Math.floor(Math.random() * (95 - 45) + 45),
+        Math.floor(Math.random() * (80 - 20) + 20),
+        Math.floor(Math.random() * (115000 - 30000) + 30000)
+      )
+      console.log(enemyShip1)
+    }
+  })
+
+  document.getElementById('smallWin').addEventListener('click', () => {
+    if (cletusShip.health <= 0) {
+      healthBar.style.width = `0%`
+      myShipLoot.innerHTML = '💰 floats off into space 🥲'
+      runWin.classList.add('hide')
+      gameOver.classList.remove('hide')
+    } else if (cletusShip.loot >= 300000) {
+      runWin.classList.add('hide')
+      thrived.classList.remove('hide')
+    } else {
+      runWin.classList.add('hide')
+      battleSearch.classList.remove('hide')
+      enemyShip1 = new enemyShip(
+        Math.floor(Math.random() * (95 - 45) + 45),
+        Math.floor(Math.random() * (80 - 20) + 20),
+        Math.floor(Math.random() * (115000 - 30000) + 30000)
+      )
+      console.log(enemyShip1)
+    }
+  })
+
+  document.getElementById('smallLose').addEventListener('click', () => {
+    if (cletusShip.health <= 0) {
+      healthBar.style.width = `0%`
+      myShipLoot.innerHTML = '💰 floats off into space 🥲'
+      runLose.classList.add('hide')
+      gameOver.classList.remove('hide')
+    } else if (cletusShip.loot >= 300000) {
+      runLose.classList.add('hide')
+      thrived.classList.remove('hide')
+    } else {
+      runLose.classList.add('hide')
+      battleSearch.classList.remove('hide')
+      enemyShip1 = new enemyShip(
+        Math.floor(Math.random() * (95 - 45) + 45),
+        Math.floor(Math.random() * (80 - 20) + 20),
+        Math.floor(Math.random() * (115000 - 30000) + 30000)
+      )
+      console.log(enemyShip1)
+    }
+  })
 }
-// else if (myShip.health <= 0 || myShip.loot >=200000) {
-//     attackWin.classList.add("hide")
-//     gameOver.classList.remove("hide")
-// }
 
+document.querySelector('#start-over').addEventListener('click', () => {
+  healthBar.style.width = `100%`
+  cletusShip = new myShip(70, 50, 50000, 100)
+  myShipStats.classList.add('hide')
+  gameOver.classList.add('hide')
+  title.classList.remove('hide')
+})
 
-// switch (result) {
-//     case ""
-// }
-
-
-// //ENDING RESULT
-
-
-// const survived = document.querySelector("#survived")
-// document.querySelector("#start-over").addEventListener("click", () => {
-//     survived.classList.add("hide")
-//     story1.classList.remove("hide")
-// })
-
-// const thrived = document.querySelector("#thrived")
-// document.querySelector("#start-over").addEventListener("click", () => {
-//     thrived.classList.add("hide")
-//     story1.classList.remove("hide")
-// })
-
-
-// currentSlideOff = document.querySelector(".title").style.display = "none";
-// newSlideOn = document.querySelector(".story1").style.display = "flex";
-
-//TITLE:
-//An event listener for "START" button to:
-    //1. fade out current div-title element
-    //2. activate proceeding div-background element
-
-
-//BACKGROUND:
-//An event listener to "SCROLL" button that scroll through text
-//An event listener to:
-    //1. fade out current div-setting element
-    //2. activate proceeding div-ship-selection element
-
-
-//ENEMY SHIP:
-//Math.floor & math.random to fill in each(3) stat component:
-    //1. HEALTH
-    //2. SPEED
-    //3. LOOT (***Loot value is 50 - 100k, or other relative/substantial range)
-
-
-// LOOKOUT ALERT MESSAGE:
-//Enemy ship stats (attack, speed, loot) are randomly generated (Math.floor & Math.random)
-//Using if functions, text is printed based on enemy ship stats
-    //If ship is above 70 attack: "text"
-    //If ship is 40-70 attack: "text"
-    //If the ship is 0-40 attack: "text"
-//An event listener to:
-    //1. fade out current div-lookout element
-    //2. activate proceeding div-background element
-
-
-//ATTACK/RUN CHOICE:
-//Two Options:
-//1 - clicking a button with no confirmation:
-    //An event listener on "ATTACK" button to trigger a function that compares user to enemy ATTACK stats
-    //An event listener on "GTFO" button to trigger a function that compares user to enemy SPEED stats
-    //  Button click automatically moves to next screen/div element
-//2 - clicking is essentially checking a box
-    //An event listener that runs one of two functions
-    //ATTACK chain of events***:
-        //Compare user to enemy ATTACK value
-        //If user > enemy, steal loot***
-            //Print "text" result
-        //If user < enemy, decrement to HEALTH and LOOT values
-            //Print "text" result  
-    //GTFO chain of events:
-        //Compare user to enemy SPEED value
-        //If user < enemy, decrement to HEALTH value that is fraction of enemy's ATTACK value.
-            //Print "text".
-        //If user > enemy, no value changes.
-            //Print "Made it out unscathed"
-        
-
-
-//LOOP FUNCTION:
-//-Start a loop function that runs the above function sequence three times (4 iterations/enemy ships total) 
-//  ENEMY-SHIP, LOOKOUT-ALERT MESSAGE, and ATTACK/RUN CHOICE
-//IF STATEMENTS to exit loop: 
-    //If: HEALTH < 0, print GAME OVER div element.
-    //If: All 4 repetitions completed && LOOT value < x, print SURVIVED div element
-    //If: all 4 repetitions completed && LOOT value > x, print THRIVED div element
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//IF YOU GOT EXTRA TIME IDEAS (marked with ***):
-//Game elements:
-    //4 diferent battleChoice screens
-    //Ship selection: there are 3 different choices
-    //3 choices: attack, run, or ally/negotiate
-    //If "game over", have an option to either "keep playing" or "start over"
-    //After third ship, "we need to head home. "
-    //ATTACK reactions: if user > enemy && enemy attack is within 5 pts, the user still takes some damage. 
-    //Loot values: dependent on attack stat of ship || dependent on the ratio of comparison values
-    //Different, semi-random lookout alerts (3-4 options for either "greater" or "lesser")
-//Styling:
-//Music for various sections (title & story slides, ship display, each enemy ship, battle outcome, each 3 ending
-//At the end, print how much money there is to spare.
-    //Perhaps even options of (if remainder > ___, we can buy snacks/a new ship/whatever). 
-    //  would probably necessitate the option to go back and get even more points cuz you aren't gonna get THAT far over the goal. 
-//Health bra for ship
+document.querySelector('#once-more').addEventListener('click', () => {
+  healthBar.style.width = `100%`
+  cletusShip = new myShip(70, 50, 50000, 100)
+  myShipStats.classList.add('hide')
+  thrived.classList.add('hide')
+  title.classList.remove('hide')
+})
